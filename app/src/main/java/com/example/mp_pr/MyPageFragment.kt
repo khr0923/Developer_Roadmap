@@ -1,5 +1,6 @@
 package com.example.mp_pr
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.material.appbar.MaterialToolbar
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -67,14 +69,34 @@ class MyPageFragment : Fragment(){
                 }
 
                 R.id.signOut_menu -> {
-                    FirebaseAuth.getInstance().currentUser?.delete()
-                    startActivity(Intent(activity, LogInActivity::class.java))
+                    showDialog()
                     true
                 }
                 else -> false
             }}
 
         return view
+    }
+
+    private fun showDialog(){
+        val builder = AlertDialog.Builder(activity)
+        builder
+            .setTitle("정말 탈퇴하시겠어요?")
+            .setMessage("탈퇴 버튼 선택시, 계정은 삭제되며 복구되지 않습니다.")
+            .setIcon(R.drawable.logo_img_2)
+            .setPositiveButton("확인") { dialog , which ->
+                // 기능구현
+                Log.v("다이얼로그", "yes")
+                FirebaseAuth.getInstance().currentUser?.delete()
+                startActivity(Intent(activity, LogInActivity::class.java))
+
+            }
+            .setNegativeButton("취소"){ dialog, which ->
+                // 기능구현
+                Log.v("다이얼로그", "No")
+            }
+            .create()
+            .show()
     }
 
 

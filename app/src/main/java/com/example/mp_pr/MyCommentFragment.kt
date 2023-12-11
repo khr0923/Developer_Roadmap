@@ -60,7 +60,6 @@ class MyCommentFragment : Fragment() {
 
             adapter.setItemClickListener(object: MyCommentAdapter.ClickListener{
                 override fun onClick(v: View, position: Int) {
-                    Toast.makeText(context, "${myComment[position].com_content}", Toast.LENGTH_SHORT).show()
 
                     val intent: Intent = Intent(context, CommentActivity::class.java)
 

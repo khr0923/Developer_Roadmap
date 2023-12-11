@@ -232,6 +232,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:textColorHint="#8F8F8F8F"
+                android:textColor="@color/white"
                 android:background="@null"
                 android:privateImeOptions="defaultInputmode=korean"
                 android:hint="댓글을 입력하세요." />
